@@ -3,10 +3,10 @@
 
 int main(int argc, char const *argv[])
 {
-    int r[2];
+    int r[128];
     pid_t id;
     int pfd1[2],pfd2[2];
-    pipe(pfd1);
+    
 
     int arr[2];
     int i,sum=0;
@@ -14,16 +14,17 @@ int main(int argc, char const *argv[])
     for(i=0;i<2;i++)
     scanf("%d",&arr[i]);
    
-      
+        pipe(pfd1);
         id=fork();
-    for(i=0;i<2;i++)
-    {
-        if (0 == id)
-        {
-            read(pfd1[0], &r[i],8);
-            printf("received number : %d\n",r[i]);
-            close(pfd1[0]);
-        }
+        
+        for(i=0;i<2;i++)
+            {
+         if (0 == id)
+           {
+           read(pfd1[0],&r[i],128);
+           printf("received number : %d\n",r[i]);
+           close(pfd1[0]);
+           }
         else
         {
             write(pfd1[1],&arr[i],8);
@@ -35,7 +36,8 @@ int main(int argc, char const *argv[])
    pipe(pfd2);
     id=fork();
     
-    {for ( i = 0; i < 2; i++)
+    {
+        for ( i = 0; i < 2; i++)
         {
             sum=sum+r[i];
         } 
@@ -50,7 +52,7 @@ int main(int argc, char const *argv[])
         {
               
             write(pfd2[1],&sum,4);
-            //printf("addition in write: %d\n",sum);
+           printf("addition in write: %d\n",sum);
             close(pfd2[1]);
         } 
     }
