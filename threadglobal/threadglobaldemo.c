@@ -2,20 +2,20 @@
 #include <unistd.h>
 #include <pthread.h>
 
-int count=0;
-
 void *thread(void *arg)
 {
-    count++;
 printf("Thread\n");
 }
 
 int main(int argc, char const *argv[])
 {
     pthread_t tid;
-    count++;
+ 
     printf("before thread creation\n");
     pthread_create(&tid, NULL, thread, NULL);
-  
+  //  printf("after thread creation\n");
+
+   // sleep(1);
+    //printf("after sleep\n");
     return 0;
 }
