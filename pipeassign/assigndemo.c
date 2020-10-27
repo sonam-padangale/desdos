@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
         {
               
             write(pfd2[1],&sum,4);
-           printf("addition in write: %d\n",sum);
+           //printf("addition in write: %d\n",sum);
             close(pfd2[1]);
         } 
     }
