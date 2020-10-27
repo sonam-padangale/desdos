@@ -23,7 +23,7 @@ void *dec_thread(void *arg)
     while (1)
     {
     pthread_mutex_lock(&count_mutex);//lock
-    pthread_mutex_lock(&count_mutex);//lock
+   // pthread_mutex_lock(&count_mutex);//dead-lock
     count--;
     printf("Dec Thread:%d \n",count);
     pthread_mutex_unlock(&count_mutex);//   //unlock
