@@ -22,4 +22,4 @@ int main(int argc, char const *argv[])
 
     mq_close(mqfd);
     return 0;
-}
+} 
